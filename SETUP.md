@@ -17,13 +17,25 @@ Before you begin, ensure you have the following installed:
 
 ## 2. Initial Setup
 
-### Step 1: Clone the Repository
+### Step 1: Fork and Clone the Repository
+1. **Fork** this repository to your own GitHub account.
+2. **Clone** your forked version:
+   ```bash
+   git clone https://github.com/<YOUR_USERNAME>/next-production-template.git
+   cd next-production-template
+   ```
+3. **Set Upstream**: Add the original repository as a remote named `upstream` to stay in sync.
+   ```bash
+   git remote add upstream https://github.com/milk88084/next-production-template.git
+   ```
+
+### Step 2: Switch to the Development Branch
+**CRITICAL**: All development MUST happen on the `dev` branch. Switch immediately after cloning:
 ```bash
-git clone <repository-url>
-cd next-production-template
+git checkout dev
 ```
 
-### Step 2: Install Dependencies
+### Step 3: Install Dependencies
 This project uses `pnpm` monorepo. Run the following command from the root directory:
 ```bash
 pnpm install

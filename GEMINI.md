@@ -45,9 +45,13 @@ This project follows a **Pnpm Monorepo** architecture, divided into three primar
 ---
 
 ## 4. Git Workflow
-- **Branching Strategy**: All active development MUST occur on the `dev` branch.
-- **Main Protection**: The `main` branch is for stable production code only.
-- **Merging**: After pushing changes to `dev`, Gemini MUST explicitly ask the user for confirmation before attempting to merge `dev` into `main`.
+- **Physical Branch Protection**: Branch protection rules are ACTIVE on GitHub for `main` and `dev` branches.
+- **No Direct Push**: Direct pushing to `main` or `dev` is PHYSICALLY BLOCKED by GitHub. All changes MUST be submitted via a **Pull Request (PR)** from a feature branch or a fork.
+- **Development Branch**: All development MUST start on the `dev` branch or a feature branch (e.g., `feat/xxx`).
+- **PR Approval Required**:
+  - Merging into `dev` requires a PR and a passing build.
+  - Merging into `main` requires a PR and **explicit approval from @milk88084**.
+- **Upstream Sync**: Set the original repository as `upstream` (`git remote add upstream <original-url>`) and keep your fork's `dev` branch in sync.
 - **Pruning**: Periodically run `git fetch --prune` to keep the local branch list clean.
 
 ---
