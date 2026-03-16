@@ -2,16 +2,18 @@ import pino from "pino";
 
 const level = process.env.LOG_LEVEL ?? "info";
 
-export const logger = pino({
+const pinoOptions: pino.LoggerOptions = {
   level,
-  transport:
-    process.env.NODE_ENV === "development"
-      ? { target: "pino/file", options: { destination: 1 } }
-      : undefined,
   serializers: pino.stdSerializers,
   base: { service: "repo-server" },
   timestamp: pino.stdTimeFunctions.isoTime,
-});
+};
+
+if (process.env.NODE_ENV === "development") {
+  pinoOptions.transport = { target: "pino/file", options: { destination: 1 } };
+}
+
+export const logger = pino(pinoOptions);
 
 export const metricsState = {
   requestCount: 0,
@@ -33,7 +35,7 @@ export function getP95(): number {
   const sorted = [...metricsState.responseTimes].sort((a, b) => a - b);
   if (sorted.length === 0) return 0;
   const idx = Math.ceil(sorted.length * 0.95) - 1;
-  return sorted[idx];
+  return sorted[idx] ?? 0;
 }
 
 export function getErrorRate(): number {
