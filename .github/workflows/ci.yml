@@ -39,6 +39,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm db:generate
       - run: pnpm turbo run type-check
 
   test:
@@ -110,6 +111,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm db:generate
       - run: pnpm turbo run build
         env:
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_ci
