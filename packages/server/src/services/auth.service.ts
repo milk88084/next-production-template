@@ -29,7 +29,8 @@ export class AuthService {
   }
 
   async updateUser(id: string, data: UpdateUser) {
-    return prisma.user.update({ where: { id }, data });
+    const updateData = Object.fromEntries(Object.entries(data).filter(([, v]) => v !== undefined));
+    return prisma.user.update({ where: { id }, data: updateData });
   }
 
   async listUsers(page: number, limit: number) {

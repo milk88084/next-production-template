@@ -49,9 +49,10 @@ export class PostsService {
   }
 
   async update(id: string, data: UpdatePost) {
+    const updateData = Object.fromEntries(Object.entries(data).filter(([, v]) => v !== undefined));
     return prisma.post.update({
       where: { id },
-      data,
+      data: updateData,
       include: { author: { select: { id: true, username: true, avatarUrl: true } } },
     });
   }
