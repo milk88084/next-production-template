@@ -18,6 +18,7 @@ Before you begin, ensure you have the following installed:
 ## 2. Initial Setup
 
 ### Step 1: Fork and Clone the Repository
+
 1. **Fork** this repository to your own GitHub account.
 2. **Clone** your forked version:
    ```bash
@@ -30,22 +31,29 @@ Before you begin, ensure you have the following installed:
    ```
 
 ### Step 2: Switch to the Development Branch
+
 **CRITICAL**: All development MUST happen on the `dev` branch. Switch immediately after cloning:
+
 ```bash
 git checkout dev
 ```
 
 ### Step 3: Install Dependencies
+
 This project uses `pnpm` monorepo. Run the following command from the root directory:
+
 ```bash
 pnpm install
 ```
 
 ### Step 3: Configure Environment Variables
+
 Copy the example environment file and update it with your local settings (e.g., Clerk API keys).
+
 ```bash
 cp .env.example .env
 ```
+
 > **Note:** Open `.env` and ensure the `CLERK_SECRET_KEY` and `CLERK_PUBLISHABLE_KEY` are correctly set for your local development.
 
 ---
@@ -53,52 +61,63 @@ cp .env.example .env
 ## 3. Infrastructure & Database
 
 ### Step 1: Start PostgreSQL via Docker
+
 The project includes a `docker-compose.yml` for the database.
+
 ```bash
 pnpm docker:up
 ```
 
 ### Step 2: Initialize Prisma
+
 Once the database is running, generate the Prisma client and push the schema:
+
 ```bash
 pnpm db:generate
 pnpm db:push
 ```
-*Alternatively, use `pnpm db:migrate` if you want to apply existing migrations.*
+
+_Alternatively, use `pnpm db:migrate` if you want to apply existing migrations._
 
 ---
 
 ## 4. Running the Project
 
 ### Start Everything (Parallel)
+
 This command will start the `client`, `server`, and `shared` packages in development mode:
+
 ```bash
 pnpm dev
 ```
 
 ### Start Individual Packages
-- **Frontend only**: `pnpm dev:client` (runs on `http://localhost:5173`)
-- **Backend only**: `pnpm dev:server` (runs on `http://localhost:3001`)
+
+Use `pnpm dev` with Turborepo to start the desired apps. See `CLAUDE.md` for available filters.
 
 ---
 
 ## 5. Development Tools & Commands
 
 ### Code Quality
+
 - **Linting**: `pnpm lint`
 - **Type Checking**: `pnpm type-check`
 - **Formatting**: `pnpm exec prettier --write .`
 
 ### Testing
+
 - **Unit Tests**: `pnpm test` (Vitest)
 - **E2E Tests**: `pnpm test:e2e` (Playwright)
 
 ### Database Management
+
 - **Prisma Studio**: `pnpm db:studio` (GUI for database)
 
 ---
 
 ## 6. Project Structure Overview
+
 - `packages/shared`: Shared Zod schemas and TypeScript types.
 - `packages/server`: Express backend with Prisma.
 - `packages/client`: React frontend with Vite and TailwindCSS.

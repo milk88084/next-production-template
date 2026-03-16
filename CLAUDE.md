@@ -6,9 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Development
-pnpm dev                  # Start all (client :5173, server :3001)
-pnpm dev:client           # Client only
-pnpm dev:server           # Server only
+pnpm dev                  # Start all via Turborepo
 
 # Quality checks
 pnpm lint
