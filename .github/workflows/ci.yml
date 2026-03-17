@@ -92,6 +92,7 @@ jobs:
       - run: pnpm test:e2e
         env:
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_your_publishable_key
+          CLERK_SECRET_KEY: sk_test_ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
