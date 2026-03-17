@@ -9,8 +9,8 @@ test.describe("Home Page", () => {
 
   test("should display feature cards", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("Clerk Authentication")).toBeVisible();
-    await expect(page.getByText("Prisma ORM")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Clerk Authentication" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Prisma ORM" })).toBeVisible();
   });
 
   test("should show navigation to posts for unauthenticated users", async ({ page }) => {
