@@ -18,7 +18,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm --filter @repo/web dev",
+    command: process.env.CI
+      ? "pnpm --filter @repo/web exec next dev --port 3000"
+      : "pnpm --filter @repo/web dev",
     port: 3000,
     reuseExistingServer: !process.env.CI,
   },
