@@ -17,16 +17,9 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  webServer: [
-    {
-      command: "pnpm --filter @repo/api dev",
-      port: 3001,
-      reuseExistingServer: !process.env.CI,
-    },
-    {
-      command: "pnpm --filter @repo/web dev",
-      port: 3000,
-      reuseExistingServer: !process.env.CI,
-    },
-  ],
+  webServer: {
+    command: "pnpm --filter @repo/web dev",
+    port: 3000,
+    reuseExistingServer: !process.env.CI,
+  },
 });
